@@ -12,8 +12,11 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-function lk_custom_logout_redirect()
+function lk_custom_logout_redirect($logout_url)
 {
-    return home_url(); // Redirect to the site URL.
+    if (strpos($logout_url, 'customer-logout') !== false) {
+        return home_url(); // Redirect to the site URL if it's a WooCommerce logout URL.
+    }
+    return $logout_url; // Return the original URL for other logout cases.
 }
-add_filter('woocommerce_logout_default_redirect_url', 'lk_custom_logout_redirect');
+add_filter('woocommerce_get_logout_url', 'lk_custom_logout_redirect', 10, 1);
