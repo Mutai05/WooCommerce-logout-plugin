@@ -5,7 +5,7 @@
  * Description: Redirects users to the site URL after logging out from WooCommerce.
  * Author: Mutai Kelvin
  * Author URI: https://mutaikelvin.com/
- * Version: 1.5
+ * Version: 1.8
  */
 
 if (!defined('ABSPATH')) {
@@ -14,8 +14,8 @@ if (!defined('ABSPATH')) {
 
 function lk_custom_logout_redirect($logout_url)
 {
-    if (strpos($logout_url, 'customer-logout') !== false) {
-        return home_url(); // Redirect to the site URL if it's a WooCommerce logout URL.
+    if (strpos($logout_url, 'customer-logout') !== false || strpos($logout_url, 'wp-login.php?action=logout') !== false) {
+        return home_url(); // Redirect to the site URL if it's a WooCommerce or WordPress logout URL.
     }
     return $logout_url; // Return the original URL for other logout cases.
 }
