@@ -5,7 +5,7 @@
  * Description: Redirects users to the site URL after logging out from WooCommerce.
  * Author: Mutai Kelvin
  * Author URI: https://mutaikelvin.com/
- * Version: 1.0
+ * Version: 1.5
  */
 
 if (!defined('ABSPATH')) {
